@@ -2,9 +2,9 @@ import tkinter as tk
 import pygame
 
 # Configuration
-CELL_SIZE = 10
-HEIGHT = 50
-WIDTH = 50
+CELL_SIZE =15 
+HEIGHT =33 
+WIDTH =50 
 DELAY = 0.1  # delay between generations in seconds
 
 # Initialize pygame mixer for sound
@@ -44,8 +44,13 @@ class GameOfLife:
         self.pause_button = tk.Button(root, text="⏸ Pause", command=self.toggle_pause, state="disabled", **btn_style)
         self.pause_button.pack(pady=3)
 
-        self.next_button = tk.Button(root, text="⏭ Next", command=self.step_once, **btn_style)
-        self.next_button.pack(pady=3)
+        # Go to Generation
+        gen_frame = tk.Frame(root, bg="black")
+        gen_frame.pack(pady=5)
+        self.gen_entry = tk.Entry(gen_frame, width=10, font=("Arial", 11))
+        self.gen_entry.pack(side="left", padx=(0, 5))
+        self.goto_button = tk.Button(gen_frame, text="⏩ Go to Gen", command=self.go_to_generation, **btn_style)
+        self.goto_button.pack(side="left")
 
         self.reset_button = tk.Button(root, text="🔄 Reset", command=self.reset_simulation, **btn_style)
         self.reset_button.pack(pady=3)
@@ -131,10 +136,16 @@ class GameOfLife:
                 self.pause_button.config(text="⏸ Pause")
                 loop_sound.play(-1)
 
-    def step_once(self):
-        if not self.running:
-            self.next_generation()
+    def go_to_generation(self):
+        try:
+            target = int(self.gen_entry.get())
+            if target < self.generation:
+                return  # Don't go backward
+            while self.generation < target:
+                self.next_generation()
             self.draw_grid()
+        except ValueError:
+            pass  # Invalid input
 
     def reset_simulation(self):
         self.running = False
@@ -197,3 +208,13 @@ if __name__ == "__main__":
     rules_button.pack(pady=5)
 
     welcome_root.mainloop()
+
+      
+               
+
+   
+            
+    
+    
+    
+    
