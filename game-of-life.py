@@ -165,6 +165,13 @@ def show_rules():
     title.pack(pady=10)
 
     rules_text = (
+    "Introduction.\n\n"
+         "John Conway’s Game of Life\n\n"
+    "The Game of Life is not a typical computer game. It is a cellular automaton, invented by Cambridge mathematician John Horton Conway.\n\n"
+    "It consists of a collection of cells which, based on a few mathematical rules, can live, die or multiply. Depending on the initial conditions, the cells form various patterns throughout the course of the game.\n\n"
+    "In the game, each cell can only be in 'live' or 'dead' states. According to the following rules, calculate the state of each cell in the next generation and draw the life and death distribution map of the next generation of cells.\n\n"
+    "The state of each cell after iteration is determined by the state of the cell and the surrounding eight cells.\n\n" 
+        "Rules:\n\n"
         "1. Any live cell with fewer than two live neighbours dies (underpopulation).\n\n"
         "2. Any live cell with two or three live neighbours lives on to the next generation (survival).\n\n"
         "3. Any live cell with more than three live neighbours dies (overpopulation).\n\n"
